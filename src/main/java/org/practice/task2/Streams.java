@@ -93,5 +93,18 @@ public class Streams {
                 .sorted(Comparator.comparing(String::length)
                         .thenComparing(Comparator.naturalOrder()))
                 .forEach(System.out::println);
+
+        // 8 Задача
+        // Имеется массив строк, в каждой из которых лежит набор из 5 слов, разделенных пробелом, найдите среди всех слов самое длинное,
+        // если таких слов несколько, получите любое из них
+        String[] strWords = {
+                "программирование алгоритм структура функция переменная",
+                "интерфейс исключение коллекция поток строка",
+                "трансформация инициализация конкатенация выполнение компиляция"
+        };
+
+        Arrays.stream(strWords).
+                flatMap(s -> Arrays.stream(s.split(" ")))
+                .max(Comparator.comparing(String::length)).ifPresent(System.out::println);
     }
 }
